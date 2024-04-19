@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="vi">
+  <%- include('../../partials/head.ejs') %>
+  <body>
+    <%- include('../../partials/scripts/pre-scripts.ejs') %>
+    <%- include('../../partials/layouts/header.ejs') %>
+    <main>
+      <div class="page-wrapper">
+        <div class="page-header">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <img class="avatar avatar-lg rounded" />
+              </div>
+              <div class="col">
+                <h1 class="fw-bold"><%= locals.user.name %></h1>
+                <div class="list-inline list-inline-dots text-secondary">
+                  <div class="list-inline-item">
+                    <%- include('../../partials/icons/mail.ejs') %>
+                    <span>
+                      <a
+                        class="text-reset"
+                        href="mailto:<%= locals.user.email %>"
+                      >
+                        <%= locals.user.email %>
+                      </a>
+                    </span>
+                  </div>
+                  <div class="list-inline-item">
+                    <%- include('../../partials/icons/phone.ejs') %>
+                    <span>
+                      <a class="text-reset" href="tel:<%= locals.user.phone %>">
+                        <%= locals.user.phone %>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto ms-auto">
+                <div class="btn-list">
+                  <% if (locals.user) { %>
+                  <a href="/user/edit" class="btn btn-primary">
+                    <%- include('../../partials/icons/edit.ejs') %>
+                    <span> Chỉnh sửa </span>
+                  </a>
+                  <% } else { %>
+                  <% if (locals.user.following.includes(locals.user._id)) { %>
+                  <a href="#" class="btn btn-primary">
+                    <%- include('../../partials/icons/check.ejs') %>
+                    <span> Following </span>
+                  </a>
+                  <% } else { %>
+                  <a href="#" class="btn btn-primary">
+                    <%- include('../../partials/icons/user-plus.ejs') %>
+                    <span> Follow </span>
+                  </a>
+                  <% } %>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Page body -->
+        <div class="page-body">
+          <div class="container-xl">
+            <div class="row g-3">
+              <div class="col">
+                <div class="row row-cards">
+                  <div class="page-wrapper">
+                    <div class="page-header d-print-none">
+                      <div class="container-xl">
+                        <div class="row g-2 align-items-center">
+                          <div class="col">
+                            <h1 class="page-title">Danh sách trọ</h1>
+                            <div class="text-secondary mt-1">
+                              1-6 của 241 ảnh
+                            </div>
+                          </div>
+                          <!-- Page title actions -->
+                          <div class="col-auto ms-auto d-print-none">
+                            <div class="d-flex">
+                              <a href="/houses/create" class="btn btn-primary">
+                                <%-
+                                include('../../partials/icons/home-plus.ejs') %>
+                                <span>Đăng tin</span>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="page-body">
+                      <div class="container-xl">
+                        <div class="row row-cards">
+                          <% if (houses) { %> <% houses.forEach((house)=> { %>
+                          <%- include('../../partials/cards/house.ejs', { house }) %>
+                          <% }) %>
+                          <% } %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../partials/scripts/post-scripts.ejs') %>
+  </body>
+</html>

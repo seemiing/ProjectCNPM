@@ -1,0 +1,28 @@
+# Gitignore template for Node.js projects
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+node_modules/
+
+# dotenv environment variable files
+.env
+.env.*
+!.env.example
+
+# Generated files
+dist/
+
+# Misc
+.DS_Store
+
+# Docker
+.docker/
+
+# Vercel
+.vercel
+
+# Visual Studio Code
+.vscode/
+
+# Uploads
+uploads/

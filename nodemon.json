@@ -1,0 +1,7 @@
+{
+  "ext": "js,ejs,css",
+  "ignore": [".git", "node_modules", "dist"],
+  "events": {
+    "restart": "clear"
+  }
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+  <%- include('../../partials/head.ejs') %>
+  <body>
+    <%- include('../../partials/scripts/pre-scripts.ejs') %>
+    <%- include('../../partials/layouts/header.ejs') %>
+    <main>
+      <div class="page-wrapper">
+        <div class="page-header d-print-none">
+          <div class="container-xl">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <h1 class="page-title">Danh sách trọ</h1>
+                <div class="text-secondary mt-1">1-6 của 241 ảnh</div>
+              </div>
+              <!-- Page title actions -->
+              <div class="col-auto ms-auto d-print-none">
+                <div class="d-flex">
+                  <a href="/houses/create" class="btn btn-primary">
+                    <%- include('../../partials/icons/home-plus.ejs') %>
+                    <span>Đăng tin</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-body">
+          <div class="container-xl">
+            <div class="row row-cards">
+              <% if (houses) { %> <% houses.forEach((house)=> { %>
+              <%- include('../../partials/cards/house.ejs', { house }) %>
+              <% }) %>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="container-xl">
+          <div class="d-flex">
+            <ul class="pagination ms-auto">
+              <% if (page > 1) { %>
+              <li class="page-item">
+                <a class="page-link" href="/houses/?page=<%= (page - 1) %>">
+                  <%- include('../../partials/icons/chevron-left.ejs') %>
+                  <span> Quay lại </span>
+                </a>
+              </li>
+              <% } %>
+              <% if (page - 2 > 0) { %>
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  href="/houses/?page=<%= Math.max(1, page - 2)%>"
+                  ><%= Math.max(1, page - 1)%></a
+                >
+              </li>
+              <% } %>
+              <% if (page - 1 > 0) { %>
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  href="/houses/?page=<%= Math.max(1, page - 2)%>"
+                  ><%= Math.max(1, page - 1)%></a
+                >
+              </li>
+              <% } %>
+              <li class="page-item active">
+                <a class="page-link" href="/houses/?page=<%= page %>"
+                  ><%= page %></a
+                >
+              </li>
+              <% if (page + 1 <= maxPage) { %>
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  href="/houses/?page=<%= Math.min(maxPage, page + 1)%>"
+                  ><%= Math.min(maxPage, page + 1)%></a
+                >
+              </li>
+              <% } %>
+              <% if (page + 2 <= maxPage) { %>
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  href="/houses/?page=<%= Math.min(maxPage, page + 2)%>"
+                  ><%= Math.min(maxPage, page + 2)%></a
+                >
+              </li>
+              <% } %>
+              <% if (page < maxPage) { %>
+              <li class="page-item">
+                <a class="page-link" href="/houses/?page=<%= (page + 1) %>">
+                  <span> Tiếp theo </span>
+                  <%- include('../../partials/icons/chevron-right.ejs') %> </a
+                >`
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../../partials/scripts/post-scripts.ejs') %>
+  </body>
+</html>
