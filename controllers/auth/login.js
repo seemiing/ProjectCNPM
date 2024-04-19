@@ -14,7 +14,6 @@ const getLoginPage = (req, res) => {
   const metadata = {
     title: "Đăng nhập",
   };
-
   return res.render("pages/auth/login", { metadata });
 };
 
