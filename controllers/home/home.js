@@ -46,7 +46,7 @@ const getManageAccount = async(req, res, next) => {
 
 const getManageAccountDashboard = async(req, res, next) =>{
   try {
-    return res.send(200);
+    return res.render('./pages/dashboardAdmin');
   } catch (error) {
     return next(error)
   }
