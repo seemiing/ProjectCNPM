@@ -14,14 +14,12 @@ const getLoginPage = (req, res) => {
   const metadata = {
     title: "Đăng nhập",
   };
-
   return res.render("pages/auth/login", { metadata });
 };
 
 const postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     try {
       const user = await loginService.login(email, password);
       req.session.user = user;
